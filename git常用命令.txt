@@ -1,0 +1,7 @@
+远程覆盖本地
+git fetch --all
+git reset --hard origin/master
+提交
+git add 文件名
+git commit -m '注释'
+git push
