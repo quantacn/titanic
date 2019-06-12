@@ -47,5 +47,7 @@ train_df['Fare'].fillna(Fare_guess)
 train_df=train_df.drop('Cabin',axis=1)
 train_df['Sex']=train_df['Sex'].map({'female':0,'male':1}).astype(int)
 #SibSp Parch列合并成新列，然后处理数据，分为三类。年龄亦如此。
+train_df['col_Sib_new']=train_df['SibSp']+train_df['Parch']+1
+train_df=train_df.drop(['SibSp','Parch'], axis=1)
 print (train_df.head())
 
