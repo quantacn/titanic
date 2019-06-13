@@ -46,8 +46,19 @@ Fare_guess=train_df['Fare'].mode()
 train_df['Fare'].fillna(Fare_guess)
 train_df=train_df.drop('Cabin',axis=1)
 train_df['Sex']=train_df['Sex'].map({'female':0,'male':1}).astype(int)
+#train_df['Embarked']=train_df['Embarked'].map({'S':0,'C':1,'Q':2}).astype(int)
 #SibSp Parch列合并成新列，然后处理数据，分为三类。年龄亦如此。
 train_df['col_Sib_new']=train_df['SibSp']+train_df['Parch']+1
 train_df=train_df.drop(['SibSp','Parch'], axis=1)
-print (train_df.head())
+#sns.tsplot(x='Fare',y='Survived',data=train_df)
+#plt.show()
+def Fam_label(s):
+    if (s >= 2) & (s <= 4):
+        return 2
+    elif ((s > 4) & (s <= 7)) | (s == 1):
+        return 1
+    elif (s > 7):
+        return 0
+train_df['col_Sib_new']=train_df['col_Sib_new'].apply(Fam_label)
+print (train_df.info())
 
