@@ -60,5 +60,6 @@ def Fam_label(s):
     elif (s > 7):
         return 0
 train_df['col_Sib_new']=train_df['col_Sib_new'].apply(Fam_label)
-print (train_df.info())
+dummies_Embarked = pd.get_dummies(train_df['Embarked'], prefix= 'Embarked')
+print (train_df.head())
 
