@@ -61,5 +61,7 @@ def Fam_label(s):
         return 0
 train_df['col_Sib_new']=train_df['col_Sib_new'].apply(Fam_label)
 dummies_Embarked = pd.get_dummies(train_df['Embarked'], prefix= 'Embarked')
+train_df=pd.concat([train_df,dummies_Embarked],axis=1)
+train_df=train_df.drop(['Embarked'], axis=1)
 print (train_df.head())
 
